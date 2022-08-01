@@ -1,21 +1,23 @@
 class Solution {
 public:
     int characterReplacement(string s, int k) {
-        int n = s.size();
-        int i = 0, j = 0, maxi = 0;
-        unordered_map<char,int>mp;
-        int ans = -1;
-        while(j < n)
+        int l = 0, r = 0, ans = 0, max_w = 0;
+        unordered_map<char, int> count;
+        while(r < s.size())
         {
-            mp[s[j]]++;
-            maxi = max(maxi, mp[s[j]]);
-            if((j-i+1) - maxi > k){
-                mp[s[i]]--;
-                i++;
+            char temp = s[r];
+            count[temp] ++;
+            max_w = max(max_w, count[temp]);
+            if((r - l + 1) - max_w > k)
+            {
+                char temp2 = s[l];
+                count[temp2] --;
+                l ++;      
             }
-            ans = max(ans, (j-i+1));
-            j++;   
+            ans = max(ans, (r - l + 1));
+            r ++;
         }
         return ans;
+        
     }
 };
