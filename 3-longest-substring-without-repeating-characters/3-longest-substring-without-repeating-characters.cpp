@@ -1,27 +1,23 @@
 class Solution {
-    public:
+public:
     int lengthOfLongestSubstring(string s) {
         unordered_map<char, int> window;
-
-        int left = 0, right = 0;
-        int res = 0; // 记录结果
-        while (right < s.size()) {
-            char c = s[right];
-            right++;
-            // 进行窗口内数据的一系列更新
-            window[c]++;
-            // 判断左侧窗口是否要收缩
-            while (window[c] > 1) {
-                char d = s[left];
-                left++;
-                // 进行窗口内数据的一系列更新
-                window[d]--;
+        int l = 0;
+        int r = 0;
+        int ans = 0;
+        while(r < s.size())
+        {
+            char temp = s[r];
+            r ++;
+            window[temp] ++;
+            while(window[temp] > 1)
+            {
+                char temp2 = s[l];
+                l ++;
+                window[temp2] --;
             }
-            // 在这里更新答案
-            res = max(res, right - left);
+            ans = max(ans, r - l);
         }
-        return res;
-    }
+        return ans;
+        }
 };
-// 详细解析参见：
-// https://labuladong.github.io/article/?qno=3
