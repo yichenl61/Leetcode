@@ -9,7 +9,7 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        map<ListNode*, int> map;
+        unordered_map<ListNode*, int> map;
         ListNode* curr = head;
         
         while (curr != NULL)
